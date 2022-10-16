@@ -1,3 +1,4 @@
+%Analyze circularity from aggresome
 clc; clear; close all;
 
 for j=1:3
