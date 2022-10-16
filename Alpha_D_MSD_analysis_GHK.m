@@ -1,4 +1,4 @@
-% Analyze the alpha value, Diffusion coefficient of Stress Granules.
+% Analyze the alpha value, Diffusion coefficient from single particle tracking.
 % Using TrackMate plug-in.
 
 % Get the XML file of track.
