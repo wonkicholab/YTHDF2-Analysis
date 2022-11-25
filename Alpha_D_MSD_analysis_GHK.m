@@ -1,8 +1,10 @@
-% Analyze the alpha value, Diffusion coefficient from single particle tracking.
-% Using TrackMate plug-in.
+% Analyze the alpha value and diffusion coefficient from single particle tracking data generated using ImageJ TrackMate plug-in.
+% In this code, we used MSD analyzer Matlab msdanalyzer class;
+% Jean-Yves Tinevez (2022). Mean square displacement analysis of particles trajectories (https://github.com/tinevez/msdanalyzer), GitHub.
+
 
 % Get the XML file of track.
-samplename = input("Enter sample name of target XML file (ex)cell1_157-20min1: ",'s');
+samplename = input("Enter sample name of target XML file (ex)cell1: ",'s');
 % Get whole tracks from XML file. clipZ option: true.
 candidate = importTrackMateTracks(strcat(samplename, '_Tracks.xml'), true);
 
@@ -28,7 +30,8 @@ filtered_tracks = cellfun(@(x) x(1:numofstep,1:3),filtered_tracks,'UniformOutput
 ma = msdanalyzer(2, 'microns', 's');
 ma=ma.addAll(filtered_tracks);
 
-% MSD calculation using plug -in.
+
+% MSD
 ma = ma.computeMSD;
 % msdmatrix: ma.msd output
 %           [dt(delay for the MSD) mean(mean MSD value for this delay)
@@ -38,11 +41,8 @@ msdmatrix = cell2mat(ma.msd);
 dtmsd = msdmatrix(:,2);
 dtmsd = reshape(dtmsd,numofstep,[]);
 
-% MSD figure for processed track.
-figure;
-ma.plotMeanMSD(gca, true);
 
-% Distribution coefficient calculation using plug-in.
+% Distribution coefficient calculation with reference to MATLAB msdanalyzer class functions.
 % store_p: gradient values of mean msd vs frame plot of each track.
 % track_indices: save the indices of valid tracks having positive D values.
 p = zeros;
@@ -65,10 +65,10 @@ for i = 1 : size(dtmsd,2)
       end
 end
 store_p = reshape(store_p,[],1);
-delete(strcat(samplename,'_SG_D_value.xlsx'));
-writematrix(store_p,strcat(samplename,'_SG_D_value.xlsx'),'WriteMode','append');
+writematrix(store_p,strcat(samplename,'_D_value.xlsx'),'WriteMode','append');
 
-% Alpha calculation
+
+% Alpha calculation with reference to MATLAB msdanalyzer class functions.
 ft = fittype('poly1');
 alphas = [];
 for i = 1: numel(track_indices)
@@ -87,5 +87,4 @@ for i = 1: numel(track_indices)
     alphas = [alphas fo.p1];
 end
 alphas = reshape(alphas,[],1);
-delete(strcat(samplename,'_SG_alphas.xlsx'));
-writematrix(alphas,strcat(samplename,'_SG_alphas.xlsx'),'WriteMode','append');
+writematrix(alphas,strcat(samplename,'_alphas.xlsx'),'WriteMode','append');
