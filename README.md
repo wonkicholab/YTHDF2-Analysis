@@ -11,6 +11,11 @@ Site for wonkicholab: https://www.wonkicholab.com/
     _Jean-Yves Tinevez (2022). Mean square displacement analysis of particles trajectories (https://github.com/tinevez/msdanalyzer), GitHub._  
    
 These codes are optimized for wonkicholab, so you need to modify the code for use.  
-The codes are run on the MATLAB.
+The codes are run on the MATLAB.Just like .m file, you can just run the file by type code file's name on the terminal of matlab. 
 
 ( Latest update: 22.11.26 )
+MATLAB                                                Version 9.11        (R2021b)
+Computer Vision Toolbox                               Version 10.1        (R2021b)
+Curve Fitting Toolbox                                 Version 3.6         (R2021b)
+Image Processing Toolbox                              Version 11.4        (R2021b)
+Statistics and Machine Learning Toolbox               Version 12.2        (R2021b)
