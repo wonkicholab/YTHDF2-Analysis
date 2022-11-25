@@ -88,3 +88,14 @@ for i = 1: numel(track_indices)
 end
 alphas = reshape(alphas,[],1);
 writematrix(alphas,strcat(samplename,'_alphas.xlsx'),'WriteMode','append');
+
+%displacement
+displacement = [];
+for i = 1: numel(track_indices)
+        index = track_indices(i);
+        track = wholetrack.tracks{index};
+        displacement = [displacement norm(track(end,2:3)-track(1,2:3))];
+end
+displacement = reshape(displacement,[],1);
+delete(strcat(samplename,'_filtered_displacement.xlsx'));
+writematrix(displacement,strcat(samplename,'_displacement.xlsx'),'WriteMode','append');
