@@ -4,6 +4,7 @@ Site for wonkicholab: _https://www.wonkicholab.com/_
 Codes are optimized for wonkicholab, so you need to modify the code for use.  
 The codes are run on the MATLAB (R2021b): _https://matlab.mathworks.com/_  
 Just like .m file, you can just run the file by type code file's name on the terminal of matlab.
+[![DOI](https://zenodo.org/badge/552037451.svg)](https://zenodo.org/badge/latestdoi/552037451)
 * * *
 
 ### **Circularity_analysis_CYS.M**  
